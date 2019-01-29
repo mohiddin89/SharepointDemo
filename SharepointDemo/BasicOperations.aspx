@@ -14,8 +14,14 @@
     .auto-style1 {
         width: 280px;
     }
+    .margin{
+        text-align:center;
+    }
 </style>
+<script src="scripts/bootstrap.min.js"></script>
 <script src="scripts/jquery-3.3.1.js"></script>
+<link href="Content/bootstrap.css" rel="stylesheet" />
+<link href="Content/bootstrap.min.css" rel="stylesheet" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -67,8 +73,7 @@
                 <tr>
                     <td>Date of Birth</td>
                     <td>
-                        <asp:TextBox ID="txtDOB" runat="server"></asp:TextBox>
-                        <cc1:CalendarExtender ID="Calendar1" PopupButtonID="imgPopup" runat="server" TargetControlID="txtDOB" Format="dd/MM/yyyy"> </cc1:CalendarExtender>
+                        <asp:TextBox ID="txtDOB" runat="server"></asp:TextBox>                        
                     </td>
                 </tr>
                 <tr>
@@ -77,17 +82,49 @@
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>Given Name</td>
+                    <td>Do you want your Login Id to be same as E-mail Id?</td>
                     <td>
-                        <asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></td>
+                        <asp:RadioButton ID="rdbyes" Text="Yes" GroupName="Email" runat="server" />
+                        <asp:RadioButton ID="rdbNo" Text="No" GroupName="Email" runat="server" /></td>
                 </tr>
                 <tr>
-                    <td>
-                       
-                    </td>
+                    <td>Login ID</td>
+                    <td><asp:TextBox ID="txtlogin" runat="server"></asp:TextBox></td>
                 </tr>
-                
+                 <tr>
+                    <td>Password</td>
+                    <td><asp:TextBox ID="txtPwd" runat="server"></asp:TextBox></td>
+                </tr>
+                 <tr>
+                    <td>Confirm Password</td>
+                    <td><asp:TextBox ID="txtCPwd" runat="server"></asp:TextBox></td>
+                </tr>
+                <tr>
+                    <td>Hint Question</td>
+                    <td><asp:DropDownList ID="drpHint" runat="server">
+                        <asp:ListItem Text="--Select--" Value="--Select--"></asp:ListItem>
+                        <asp:ListItem Text="Birth City" Value="Birth City"></asp:ListItem>
+                        <asp:ListItem Text="Favourite colour" Value="Favourite colour"></asp:ListItem>
+                        <asp:ListItem Text="Favourite Cricketer" Value="Favourite Cricketer"></asp:ListItem>
+                        <asp:ListItem Text="Favourite Food" Value="Favourite Food"></asp:ListItem>
+                        <asp:ListItem Text="First School" Value="First School"></asp:ListItem>
+                        <asp:ListItem Text="Mother's Madien Name" Value="Mother's Madien Name"></asp:ListItem>
+                        </asp:DropDownList></td>
+                </tr>
+                <tr>
+                    <td>Enter Characters Displayed </td>
+                    <td><asp:TextBox ID="txtcapture" runat="server"></asp:TextBox></td>
+                </tr>
+                 <tr>  
+                                      
+                    <td style="text-align:center"><asp:Button ID="btnReister"  class="btn btn-primary" Width="100px" Text="Rigester" runat="server" /></td>             
+                                 
+                    <td><asp:Button ID="btnClear"  class="btn btn-primary" Width="100px" Text="Clear" runat="server" /></td>
+                </tr>
+               
             </table>
+            
+               
         </div>
     </form>
 </body>
