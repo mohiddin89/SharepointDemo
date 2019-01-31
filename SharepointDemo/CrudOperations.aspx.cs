@@ -116,9 +116,7 @@ namespace SharepointDemo
 
             
 
-            Field field = web.Fields.AddFieldAsXml("<Field DisplayName='RegID' type='Number'/>",true, AddFieldOptions.DefaultValue);
-            FieldNumber number = context.CastTo<FieldNumber>(field);
-            number.Update();
+            Field field = listReg.Fields.AddFieldAsXml("<Field DisplayName='RegID' Type='Number'/>",true, AddFieldOptions.DefaultValue);
             listReg.Fields.Add(field);
             listReg.Update();
             context.Load(listReg);
