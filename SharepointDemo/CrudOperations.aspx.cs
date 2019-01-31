@@ -55,10 +55,29 @@ namespace SharepointDemo
             item.Update();
             context.ExecuteQuery();
             Console.Write("Record Submitted successful....");
+            Clear();
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            ColumnCreation();
+            #region Clear Code
+            //txtName.Text = string.Empty;
+            //drppassOfc.SelectedValue = "--Select--";
+            //txtsurName.Text = string.Empty;
+            //TextBox1.Text = string.Empty;
+            //txtEmail.Text = string.Empty;
+            //txtlogin.Text = string.Empty;
+            //txtPwd.Text = string.Empty;
+            //txtCPwd.Text = string.Empty;
+            //drpHint.SelectedValue = "--Select--";
+            //txtHanswer.Text = string.Empty;             
+            #endregion
+        }
+        public void Clear()
+        {
+            
+
             txtName.Text = string.Empty;
             drppassOfc.SelectedValue = "--Select--";
             txtsurName.Text = string.Empty;
@@ -68,7 +87,43 @@ namespace SharepointDemo
             txtPwd.Text = string.Empty;
             txtCPwd.Text = string.Empty;
             drpHint.SelectedValue = "--Select--";
-            txtHanswer.Text = string.Empty;            
+            txtHanswer.Text = string.Empty;
+
+        }
+        public void ColumnCreation()
+        {
+
+            ClientContext context = new ClientContext("https://verinontechnology.sharepoint.com/sites/SharepointAppPractice");
+            string LoginName = "adam.a@VerinonTechnology.onmicrosoft.com";
+            string Pwd = "verinon@2018";
+            SecureString securePwd = new SecureString();
+            foreach (char eachchar in Pwd)
+            {
+                securePwd.AppendChar(eachchar);
+            }
+            SharePointOnlineCredentials credentials = new SharePointOnlineCredentials(LoginName, securePwd);
+            context.Credentials = credentials;
+            context.ExecuteQuery();
+
+            Web web = context.Web;
+            context.Load(web);
+            context.Load(web.Fields);
+            context.ExecuteQuery();
+
+            List listReg = web.Lists.GetByTitle("UserRegistration");
+            context.Load(listReg.Fields);
+            context.ExecuteQuery();
+
+            
+
+            Field field = web.Fields.AddFieldAsXml("<Field DisplayName='RegID' type='Number'/>",true, AddFieldOptions.DefaultValue);
+            FieldNumber number = context.CastTo<FieldNumber>(field);
+            number.Update();
+            listReg.Fields.Add(field);
+            listReg.Update();
+            context.Load(listReg);
+            context.ExecuteQuery();
+
         }
     }
 }

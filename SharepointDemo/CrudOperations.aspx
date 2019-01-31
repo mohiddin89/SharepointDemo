@@ -48,7 +48,7 @@
     </script>
     <script type="text/javascript">
         function copyText()
-        {          
+        {         
             
             document.getElementById("txtlogin").value = document.getElementById("txtEmail").value;            
         }
@@ -132,7 +132,8 @@
                     <td>Password</td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtPwd" runat="server"></asp:TextBox></td>
-                    <td><a href="http://localhost:53907/PwdPolocy.html" onclick="window.open('D:\SharepointDemo\SharepointDemo\PwdPolocy.html','myWin','scrollbars=no,width=500,height=150');" title="Password Policy">Password Policy</a></td>
+                    <%--,'myWin','scrollbars=no,width=500,height=150'--%>
+                    <td><a href="http://localhost:53907/PwdPolocy.html" onclick="window.open('PwdPolocy.html');" title="Password Policy">Password Policy</a></td>
                 </tr>
                 <tr>
                     <td>Confirm Password</td>
