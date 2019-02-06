@@ -55,9 +55,60 @@
     </script>
     <script type="text/javascript">
         function clearText()
-        {          
-            
+        {
             document.getElementById("txtlogin").value = "";
+        }
+        function isStrongPwd1(password)
+        {
+            var regExp = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%&*()]).{8,}/;
+            var validPassword = regExp.test(password);
+            return validPassword;
+        }
+        function isStrongPwd2(password)
+        {
+            var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var lowercase = "abcdefghijklmnopqrstuvwxyz";
+            var digits = "0123456789";
+            var splChars = "!@#$%&*()";
+            var ucaseFlag = contains(password, uppercase);
+            var lcaseFlag = contains(password, lowercase);
+            var digitsFlag = contains(password, digits);
+            var splCharsFlag = contains(password, splChars);
+            if (password.length >= 8 && ucaseFlag && lcaseFlag && digitsFlag && splCharsFlag)
+                return true;
+            else
+                return false;
+        }
+        function contains(password, allowedChars)
+        {
+            for (i = 0; i < password.length; i++)
+            {
+                var char = password.charAt(i);
+                if (allowedChars.indexOf(char) >= 0) { return true; }
+            }
+            return false;
+        }
+        function submitDetails()
+        {
+            var password = document.getElementById("txtPwd");
+            var message = "The password must have atleast 8 chars with one uppercase letter, one lower case letter, one digit and one of !@#$%&amp;*()";
+            // Calling method1
+            if (!isStrongPwd1(password))
+            {               
+                alert(message);
+                success = false;
+               
+            }
+            return false;
+                        
+            // Calling method2
+            if (!isStrongPwd2(password))
+            {
+                alert(message);
+                success = false;
+               
+            }
+            return false;
         }
     </script>
     <title></title>
@@ -104,7 +155,13 @@
                         <asp:TextBox ID="txtsurName" runat="server"></asp:TextBox></td>
                 </tr>
 
-
+                <%--<tr>
+                    <td>Date of Birth</td>
+                    <td class="auto-style2">
+                        <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    </td>
+                </tr>--%>
+               
                 <tr>
                     <td>Date of Birth</td>
                     <td class="auto-style2">
@@ -114,7 +171,7 @@
                 <tr>
                     <td>Email ID</td>
                     <td class="auto-style2">
-                        <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
+                     <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>                     
                 </tr>
                 <tr>
                     <td>Do you want your Login Id to be same as E-mail Id?</td>
@@ -122,6 +179,7 @@
                         <asp:RadioButton ID="rdbyes" Text="Yes" GroupName="Email" onclick="if(this.checked){copyText()}" runat="server" />
                         <asp:RadioButton ID="rdbNo" Text="No" GroupName="Email" onclick="if(this.checked){clearText()}" runat="server" /></td>
                 </tr>
+
                 <tr>
                     <td>Login ID</td>
                     <td class="auto-style2">
@@ -167,16 +225,15 @@
                     <%--class="btn btn-primary"--%>
                     <%--class="btn btn-primary"--%>
                     <td style="text-align: center">
-                        <asp:Button ID="btnReister" class="btn btn-primary" Width="100px" Text="Rigester" runat="server" OnClick="btnReister_Click" /></td>
+                        <asp:Button ID="btnReister" class="btn btn-primary" Width="100px" Text="Rigester" runat="server" OnClick="btnReister_Click" OnClientClick="submitDetails()"/></td>
 
                     <td class="auto-style2">
                         <asp:Button ID="btnClear" class="btn btn-primary" Width="100px" Text="Clear" runat="server" OnClick="btnClear_Click" /></td>
                 </tr>
 
             </table>
-
-
         </div>
+        
     </form>
 </body>
 </html>
