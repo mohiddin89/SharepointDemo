@@ -55,26 +55,26 @@
         }       
         function MandatoryValidation()
         {
-            if (document.getElementById("<%=txtName.ClientID%>").value == "")
+            if (document.getElementById('<%=drppassOfc.ClientID%>').value == "--Select--")   
+            {
+                alert(document.getElementById('<%=drppassOfc.ClientID%>').value);
+                alert("Passport Offcice Feild can not be blank");
+                document.getElementById("<%=drppassOfc.ClientID%>").focus();
+                return false;
+            }    
+           if (document.getElementById("<%=txtName.ClientID%>").value == "")
             {
                 alert(document.getElementById("<%=txtName.ClientID%>").value);
                 alert("Name Feild can not be blank");
                 document.getElementById("<%=txtName.ClientID%>").focus();
                 return false;
             }
-           <%-- var PassOfc = document.getElementById("<%=drppassOfc.ClientID%>");
-            if (PassOfc.value == "" && PassOfc.value == "--Select--")
-            {
+                      
+           <%-- if (document.getElementById("<%=drppassOfc.ClientID%>").value == "") {
                 alert("Passport Offcice Feild can not be blank");
                 document.getElementById("<%=drppassOfc.ClientID%>").focus();
                 return false;
-            }      --%>   
-            
-            if (document.getElementById("<%=drppassOfc.ClientID%>").value == "") {
-                alert("Passport Offcice Feild can not be blank");
-                document.getElementById("<%=drppassOfc.ClientID%>").focus();
-                return false;
-            }
+            }--%>
             if (document.getElementById("<%=txtsurName.ClientID%>").value == "") {
                 alert("sur Name Feild can not be blank");
                 document.getElementById("<%=txtsurName.ClientID%>").focus();
@@ -105,6 +105,20 @@
                 document.getElementById("<%=txtlogin.ClientID%>").focus();
                 return false;
             }
+            if (document.getElementById("<%=drpHint.ClientID%>").value == "--Select--")
+            {
+                alert("Please select Security Question");
+                document.getElementById("<%=drpHint.ClientID%>").focus();
+                return false;
+             }
+             if (document.getElementById("<%=txtHanswer.ClientID%>").value == "")
+            {
+                alert("Please enter answer for security question");
+                document.getElementById("<%=txtHanswer.ClientID%>").focus();
+                return false;
+             }
+           
+           return validatePassword();
         }
         function validatePassword() {
             alert("validatePWD");
@@ -127,6 +141,16 @@
             }
             if (!regularExpression.test(newPassword)) {
                 alert("password should contain atleast one number,one small letter,one capital letter and one special character");
+                return false;
+            }
+            if (document.getElementById("<%=txtCPwd.ClientID%>").value == "") {
+                alert("please enter confirmpassword");
+                document.getElementById("<%=txtCPwd.ClientID%>").focus();
+                return false;
+            }
+            if ((document.getElementById("<%=txtCPwd.ClientID%>").value) != (document.getElementById('<%=txtPwd.ClientID %>').value)) {
+                alert("confirmpassword should be equal to password");
+                 document.getElementById("<%=txtCPwd.ClientID%>").focus();
                 return false;
             }
         }
@@ -209,14 +233,14 @@
                 <tr>
                     <td>Password<span style="color:red">*</span></td>
                     <td class="auto-style2">
-                        <asp:TextBox ID="txtPwd" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtPwd" TextMode="Password" runat="server"></asp:TextBox></td>
                     <%--,'myWin','scrollbars=no,width=500,height=150'--%>
                     <td><a href="http://localhost:53907/PwdPolocy.html" onclick="window.open('PwdPolocy.html');" title="Password Policy">Password Policy</a></td>
                 </tr>
                 <tr>
                     <td>Confirm Password<span style="color:red">*</span></td>
                     <td class="auto-style2">
-                        <asp:TextBox ID="txtCPwd" runat="server"></asp:TextBox></td>
+                        <asp:TextBox ID="txtCPwd" TextMode="Password" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
                     <td>Hint Question<span style="color:red">*</span></td>
@@ -245,7 +269,7 @@
                     <%--class="btn btn-primary"--%>
                     <%--class="btn btn-primary"--%>
                     <td style="text-align: center">
-                        <asp:Button ID="btnReister" class="btn btn-primary" Width="100px" Text="Rigester" runat="server" OnClick="btnReister_Click" OnClientClick="MandatoryValidation(); return validatePassword()" /></td>
+                        <asp:Button ID="btnReister" class="btn btn-primary" Width="100px" Text="Rigester" runat="server" OnClick="btnReister_Click" OnClientClick="return MandatoryValidation()" /></td>
 
                     <td class="auto-style2">
                         <asp:Button ID="btnClear" class="btn btn-primary" Width="100px" Text="Clear" runat="server" OnClick="btnClear_Click" /></td>
