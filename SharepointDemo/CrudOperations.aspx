@@ -23,6 +23,20 @@
     .auto-style2 {
         width: 212px;
     }
+
+    .appear1 {
+        color:white;
+        font-weight:800;  
+    }
+
+    .auto-style3 {
+        height: 29px;
+    }
+
+    .auto-style4 {
+        width: 212px;
+        height: 29px;
+    }
 </style>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -52,35 +66,26 @@
         }
         function clearText() {
             document.getElementById("txtlogin").value = "";
-        }       
-        function MandatoryValidation()
-        {
-            if (document.getElementById('<%=drppassOfc.ClientID%>').value == "--Select--")   
-            {
+        }
+        function MandatoryValidation() {
+            if (document.getElementById('<%=drppassOfc.ClientID%>').value == "--Select--") {
                 alert(document.getElementById('<%=drppassOfc.ClientID%>').value);
                 alert("Passport Offcice Feild can not be blank");
                 document.getElementById("<%=drppassOfc.ClientID%>").focus();
                 return false;
-            }    
-           if (document.getElementById("<%=txtName.ClientID%>").value == "")
-            {
+            }
+            if (document.getElementById("<%=txtName.ClientID%>").value == "") {
                 alert(document.getElementById("<%=txtName.ClientID%>").value);
-                alert("Name Feild can not be blank");
-                document.getElementById("<%=txtName.ClientID%>").focus();
+               alert("Name Feild can not be blank");
+               document.getElementById("<%=txtName.ClientID%>").focus();
                 return false;
             }
-                      
-           <%-- if (document.getElementById("<%=drppassOfc.ClientID%>").value == "") {
-                alert("Passport Offcice Feild can not be blank");
-                document.getElementById("<%=drppassOfc.ClientID%>").focus();
-                return false;
-            }--%>
             if (document.getElementById("<%=txtsurName.ClientID%>").value == "") {
                 alert("sur Name Feild can not be blank");
                 document.getElementById("<%=txtsurName.ClientID%>").focus();
                 return false;
             }
-             if (document.getElementById("<%=TextBox1.ClientID%>").value == "") {
+            if (document.getElementById("<%=TextBox1.ClientID%>").value == "") {
                 alert("Please fill User DOB");
                 document.getElementById("<%=TextBox1.ClientID%>").focus();
                 return false;
@@ -88,37 +93,33 @@
             if (document.getElementById("<%=txtEmail.ClientID %>").value == "") {
                 alert("Email id can not be blank");
                 document.getElementById("<%=txtEmail.ClientID %>").focus();
-                 return false;
-             }
+                return false;
+            }
             var emailPat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;;
-             var emailid = document.getElementById("<%=txtEmail.ClientID %>").value;
-             var matchArray = emailid.match(emailPat);
-             if (matchArray == null)
-              {
-                  alert("Your email address seems incorrect. Please try again.");
-                  document.getElementById("<%=txtEmail.ClientID %>").focus();
+            var emailid = document.getElementById("<%=txtEmail.ClientID %>").value;
+            var matchArray = emailid.match(emailPat);
+            if (matchArray == null) {
+                alert("Your email address seems incorrect. Please try again.");
+                document.getElementById("<%=txtEmail.ClientID %>").focus();
                   return false;
               }
-            if (document.getElementById("<%=txtlogin.ClientID%>").value == "")
-            {
+              if (document.getElementById("<%=txtlogin.ClientID%>").value == "") {
                 alert("Please enter LoginID");
                 document.getElementById("<%=txtlogin.ClientID%>").focus();
                 return false;
             }
-            if (document.getElementById("<%=drpHint.ClientID%>").value == "--Select--")
-            {
+            if (document.getElementById("<%=drpHint.ClientID%>").value == "--Select--") {
                 alert("Please select Security Question");
                 document.getElementById("<%=drpHint.ClientID%>").focus();
                 return false;
-             }
-             if (document.getElementById("<%=txtHanswer.ClientID%>").value == "")
-            {
+            }
+            if (document.getElementById("<%=txtHanswer.ClientID%>").value == "") {
                 alert("Please enter answer for security question");
                 document.getElementById("<%=txtHanswer.ClientID%>").focus();
                 return false;
-             }
-           
-           return validatePassword();
+            }
+
+            return validatePassword();
         }
         function validatePassword() {
             alert("validatePWD");
@@ -128,13 +129,12 @@
             var maxNumberofChars = 16;
             var regularExpression = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
-            if (newPassword.length == "")
-            {
+            if (newPassword.length == "") {
                 alert("please enter password");
                 document.getElementById('<%=txtPwd.ClientID %>').focus();
                 return false;
             }
-            
+
             if (newPassword.length < minNumberofChars || newPassword.length > maxNumberofChars) {
                 alert("password should 8 characters");
                 return false;
@@ -150,20 +150,24 @@
             }
             if ((document.getElementById("<%=txtCPwd.ClientID%>").value) != (document.getElementById('<%=txtPwd.ClientID %>').value)) {
                 alert("confirmpassword should be equal to password");
-                 document.getElementById("<%=txtCPwd.ClientID%>").focus();
+                document.getElementById("<%=txtCPwd.ClientID%>").focus();
                 return false;
             }
+        }
+        function validUser() {
+
         }
     </script>
     <title></title>
 </head>
-<body style="height: 438px">
+<body>
     <form id="form1" name="myform" runat="server">
         <div>
-            <h2 class="appear">User Registration</h2>
+            <h2 class="appear" style="text-align: center">Registration</h2>
             <table width="100%">
+                <%--<img src="486-247Park.jpg" />--%>
                 <tr>
-                    <td class="auto-style1">Passport Office<span style="color:red">*</span></td>
+                    <td class="auto-style1">Passport Office<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:DropDownList ID="drppassOfc" runat="server" Width="150px">
                             <asp:ListItem Text="--Select--" Value="--Select--"></asp:ListItem>
@@ -189,12 +193,12 @@
                         </asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>Given Name<span style="color:red">*</span></td>
+                    <td class="appear1">Given Name<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>Sur Name<span style="color:red">*</span></td>
+                    <td>Sur Name<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtsurName" runat="server"></asp:TextBox></td>
                 </tr>
@@ -207,43 +211,46 @@
                 </tr>--%>
 
                 <tr>
-                    <td>Date of Birth<span style="color:red">*</span></td>
+                    <td>Date of Birth<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
                     </td>
                 </tr>
                 <tr>
-                    <td>Email ID<span style="color:red">*</span></td>
+                    <td>Email ID<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>Do you want your Login Id to be same as E-mail Id?</td>
+                    <td class="appear1">Do you want your Login Id to be same as E-mail Id?</td>
                     <td class="auto-style2">
                         <asp:RadioButton ID="rdbyes" Text="Yes" GroupName="Email" onclick="if(this.checked){copyText()}" runat="server" />
                         <asp:RadioButton ID="rdbNo" Text="No" GroupName="Email" onclick="if(this.checked){clearText()}" runat="server" /></td>
                 </tr>
 
                 <tr>
-                    <td>Login ID<span style="color:red">*</span></td>
-                    <td class="auto-style2">
+                    <td class="auto-style3">Login ID<span style="color: red">*</span></td>
+                    <td class="auto-style4">
                         <asp:TextBox ID="txtlogin" runat="server"></asp:TextBox></td>
-                    <td></td>
+
+                    <td class="auto-style3">
+                        <asp:LinkButton ID="lnkbtnCheck" Text="Check Availability" runat="server" OnClick="btnRetrive_Click"><span style="color:white">Check Availability</span></asp:LinkButton></td>
                 </tr>
                 <tr>
-                    <td>Password<span style="color:red">*</span></td>
+                    <td>Password<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtPwd" TextMode="Password" runat="server"></asp:TextBox></td>
                     <%--,'myWin','scrollbars=no,width=500,height=150'--%>
-                    <td><a href="http://localhost:53907/PwdPolocy.html" onclick="window.open('PwdPolocy.html');" title="Password Policy">Password Policy</a></td>
+                    <td><a href="http://localhost:53907/PwdPolocy.html" onclick="window.open('PwdPolocy.html');" title="Password Policy"><span style="color:white">Password Policy</span></a></td>
                 </tr>
+
                 <tr>
-                    <td>Confirm Password<span style="color:red">*</span></td>
+                    <td>Confirm Password<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtCPwd" TextMode="Password" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td>Hint Question<span style="color:red">*</span></td>
+                    <td>Hint Question<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:DropDownList ID="drpHint" runat="server">
                             <asp:ListItem Text="--Select--" Value="--Select--"></asp:ListItem>
@@ -256,7 +263,7 @@
                         </asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td>Hint Answer<span style="color:red">*</span></td>
+                    <td>Hint Answer<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtHanswer" runat="server"></asp:TextBox></td>
                 </tr>
