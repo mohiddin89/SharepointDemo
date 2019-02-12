@@ -193,7 +193,7 @@
                         </asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td class="appear1">Given Name<span style="color: red">*</span></td>
+                    <td>Given Name<span style="color: red">*</span></td>
                     <td class="auto-style2">
                         <asp:TextBox ID="txtName" runat="server"></asp:TextBox></td>
                 </tr>
@@ -222,7 +222,7 @@
                         <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox></td>
                 </tr>
                 <tr>
-                    <td class="appear1">Do you want your Login Id to be same as E-mail Id?</td>
+                    <td>Do you want your Login Id to be same as E-mail Id?</td>
                     <td class="auto-style2">
                         <asp:RadioButton ID="rdbyes" Text="Yes" GroupName="Email" onclick="if(this.checked){copyText()}" runat="server" />
                         <asp:RadioButton ID="rdbNo" Text="No" GroupName="Email" onclick="if(this.checked){clearText()}" runat="server" /></td>
